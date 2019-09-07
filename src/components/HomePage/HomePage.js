@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import mapStoreToProps from '../../modules/mapStoreToProps';
 import Grid from '@material-ui/core/Grid';
+import MovieCard from '../MovieCard/MovieCard'
 
 class HomePage extends Component {
 
@@ -10,18 +11,17 @@ class HomePage extends Component {
     }
 
     render() {
-        let moviesList = this.props.store.moviesReducer.map((item, index) => {
-            return (
-                <li key={item.id}>{item.title}</li>
-            )})
-
-
-      
-
+       
 
         return (
             <div>
-                <ul>{moviesList}</ul>
+                <Grid container>
+                    {this.props.store.moviesReducer.map((item, index) => {
+                        return (
+                        <MovieCard key={index} movieData={item}/>
+
+                    )})}
+                </Grid>
             </div>
         )
     }
