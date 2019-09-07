@@ -1,5 +1,7 @@
-const mapStoreToProps = store => ({
-    store,
-});
+const mapStoreToProps = (store) => {
+    return {
+        store
+    }
+}
 
 export default mapStoreToProps;
