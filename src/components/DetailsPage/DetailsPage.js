@@ -1,19 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import {connect } from 'react-redux';
 import mapStoreToProps from '../../modules/mapStoreToProps';
+import { ok } from "assert";
 
-function DetailsPage(props) {
-    
-    const movieDetails = props.store.moviesReducer.filter((item, index) => {
-        console.log(item, 'lkfdjls')
-        return item.id === parseInt(props.match.params.id)
+function DetailsPage (props) {
+
+    console.log(props);
+    let specificMovie = props.store.moviesReducer.filter((item,index) => {
+        
+        return item.id == props.match.params.id
+
     })
 
-    console.log(movieDetails)
-    
     return (
         <div>
-                {props.match.params.id}
+            <p>{specificMovie[0].title}</p>
+            <p>{specificMovie[0].description}</p>
+            <p>{specificMovie[0].name}</p>
+            <h3>Id: {props.match.params.id}</h3>
         </div>
     )
 }
