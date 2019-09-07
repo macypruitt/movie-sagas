@@ -9,13 +9,17 @@ import { Card,
         CardActions,
         CardMedia,
         Typography } from '@material-ui/core';
+import './MovieCard.css';
 
 
 class MovieCard extends Component {
 
-    
+    handleClickPoster = (event) => {
+        this.props.history.push("/movies/"+this.props.movieData.id);
+    }
 
     render() {
+        
        
         const movieImagePath = this.props.movieData.poster;
         console.log(movieImagePath);
@@ -23,12 +27,16 @@ class MovieCard extends Component {
 
         return (
             <div>
-                <Card>
+                <Card className="movie-card">
                     <CardActionArea>
                         <CardContent>
-                            {titleImage} />
+                            <div className="movie-poster" onClick={this.handleClickPoster}>
+                            {titleImage}
+                            </div>
                             <Typography>
                             {this.props.movieData.title}
+                            {this.props.movieData.description}
+                            {this.props.movieData.name}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -40,4 +48,4 @@ class MovieCard extends Component {
     }
 }
 
-export default connect(mapStoreToProps) (MovieCard);
+export default connect(mapStoreToProps)(withRouter(MovieCard));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { HashRouter as Router, Route } from 'react-router-dom';
+
 import HomePage from '../HomePage/HomePage';
 import DetailsPage from '../DetailsPage/DetailsPage';
 import EditPage from '../EditPage/EditPage';
@@ -14,8 +15,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <Route exact path="/" component={HomePage} />
-          {/* <Route exact path="/movies/:id" component={DetailsPage} />
-          <Route exact path="/edit" component={EditPage} /> */}
+          <Route exact path="/movies/:id" component={DetailsPage} />
+          <Route exact path="/edit" component={EditPage} />
         </Router>
       </div>
     );
