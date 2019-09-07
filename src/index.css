@@ -12,3 +12,10 @@ body {
 .details > p {
   font-weight: 
 }
+
+input {
+  padding: 15px;
+  margin: 15px;
+  display: block;
+  align-self: 
+}

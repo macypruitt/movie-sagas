@@ -30,3 +30,10 @@
   display: block;
   align-self: center;
 }
+
+.edit-div {
+  display: inline-block;
+  margin: auto;
+
+  
+}
