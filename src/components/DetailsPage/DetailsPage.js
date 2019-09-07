@@ -1,20 +1,23 @@
 import React from "react";
 import {connect } from 'react-redux';
 import mapStoreToProps from '../../modules/mapStoreToProps';
-import { ok } from "assert";
+import Button from '@material-ui/core/Button';
 
 function DetailsPage (props) {
 
-    console.log(props);
-    let specificMovie = props.store.moviesReducer.filter((item,index) => {
-        
-        return item.id == props.match.params.id
+    function handleClickBack(e) {
+        console.log('clicky');
+    }
 
+    let specificMovie = props.store.moviesReducer.filter((item,index) => {
+        return item.id == props.match.params.id
     })
 
     return (
-        <div>
-            <p>{specificMovie[0].title}</p>
+        <div className="details">
+            <Button onClick={handleClickBack}>Back to List</Button>
+            <Button>Edit</Button>
+            <h2>{specificMovie[0].title}</h2>
             <p>{specificMovie[0].description}</p>
             <p>{specificMovie[0].name}</p>
             <h3>Id: {props.match.params.id}</h3>

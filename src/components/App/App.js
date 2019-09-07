@@ -10,9 +10,14 @@ import EditPage from '../EditPage/EditPage';
 class App extends Component {
   
   // Renders the entire app on the DOM
+
   render() {
     return (
       <div className="App">
+        
+        <div className="App-header">
+        <h1>Movie List</h1>
+        </div>
         <Router>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/movies/:id" component={DetailsPage} />
