@@ -5,9 +5,6 @@ import { withRouter } from 'react-router-dom';
 import { Card,
         CardContent,
         CardActionArea,
-        Button,
-        CardActions,
-        CardMedia,
         Typography } from '@material-ui/core';
 import './MovieCard.css';
 
@@ -15,7 +12,7 @@ import './MovieCard.css';
 class MovieCard extends Component {
 
     handleClickPoster = (event) => {
-        this.props.history.push("/movies/"+this.props.movieData.id);
+        this.props.history.push("/movies/"+this.props.movieData.movie_id);
     }
 
     render() {

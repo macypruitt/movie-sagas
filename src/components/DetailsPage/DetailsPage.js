@@ -6,12 +6,14 @@ function DetailsPage(props) {
     
     const movieDetails = props.store.moviesReducer.filter((item, index) => {
         console.log(item, 'lkfdjls')
-        return item.id ==props.match.params.id
+        return item.id === parseInt(props.match.params.id)
     })
 
+    console.log(movieDetails)
+    
     return (
         <div>
-                <p>{movieDetails[0].name}</p>
+                {props.match.params.id}
         </div>
     )
 }
