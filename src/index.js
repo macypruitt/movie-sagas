@@ -12,6 +12,12 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+// Create the rootSaga generator function
+function* rootSaga() {
+    yield takeEvery('GET_MOVIES', getMovies);
+    yield takeEvery('EDIT_MOVIE', editMovie);
+}
+
 //saga to GET list of movies
 function* getMovies(){
     try {
@@ -24,10 +30,11 @@ function* getMovies(){
 }
 
 //saga to PUT edits to movie titles and descriptions
-function* editMovie(){
+function* editMovie(action){
     try {
-        const response = yield axios.put('/api/movies');
-        yield put({type: 'GET_MOVIES', payload: response.data});
+        console.log('AP', action.payload)
+        yield axios.put('/api/movies/', action.payload );
+        yield put({type: 'GET_MOVIES'});
     }
     catch(err) {
         console.log('ERROR IN PUT', err)
@@ -35,11 +42,7 @@ function* editMovie(){
 }
 
 
-// Create the rootSaga generator function
-function* rootSaga() {
-    yield takeEvery('GET_MOVIES', getMovies);
-    yield takeEvery('EDIT_MOVIE', editMovie);
-}
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

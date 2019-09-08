@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+////GET
 router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "movies"
     JOIN "movies_genres" ON "movies".id = "movies_genres".movie_id
@@ -17,19 +18,22 @@ router.get('/', (req, res) => {
         });
 });
 
-router.put('/edit/:id', (req,res) => {
-    const editObject = req.body;
-    const movieId = req.params.id;
-    const queryText = `UPDATE "movies" SET "title"=$1 WHERE id=$2;`;
+////PUT 
+router.put('/', (req, res) => {
+    const movieObject = req.body;
+    const movieId = req.body.id;
+    console.log(`req.body contains:`, req.body)
+    
+    const queryText = `UPDATE "movies" SET "title"=$1, "description"=$2 WHERE id=$3;`;
 
-    pool.query(queryText, [editObject.title, movieId])
-        .then((result) => { 
-            res.sendStatus(200); 
+    pool.query(queryText, [movieObject.title, movieObject.description, movieId])
+        .then((result) => {
+            res.sendStatus(200);
         })
         .catch((err) => {
-                console.log('Error Editing movie data', err);
-                res.sendStatus(500);
-            });
+            console.log('Error updating database: ', err);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
