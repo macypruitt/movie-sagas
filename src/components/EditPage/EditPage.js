@@ -15,8 +15,8 @@ class EditPage extends Component {
         return(
 
             <div className="edit-div">
-                <input type="text"></input>
-                <input type="text"></input>
+                <input type="text" placeholder="Edit title"></input>
+                <input type="text" placeholder="Edit description"></input>
                 <button>Cancel</button>
                 <button>Save</button>
 
