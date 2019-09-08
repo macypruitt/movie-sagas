@@ -8,16 +8,23 @@ class EditPage extends Component {
 
     //make dispatch to saga to PUT using id
 
+
+    clickCancelHandler = (event) => {
+        this.props.history.push("/movies/"+this.props.match.params.id)
+    }
+
     render(){
 
         const movieId = this.props.match.params.id;
         console.log(movieId)
+
+
         return(
 
             <div className="edit-div">
                 <input type="text" placeholder="Edit title"></input>
                 <input type="text" placeholder="Edit description"></input>
-                <button>Cancel</button>
+                <button onClick={this.clickCancelHandler}>Cancel</button>
                 <button>Save</button>
 
 
