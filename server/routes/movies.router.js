@@ -17,4 +17,19 @@ router.get('/', (req, res) => {
         });
 });
 
+router.put('/edit/:id', (req,res) => {
+    const editObject = req.body;
+    const movieId = req.params.id;
+    const queryText = `UPDATE "movies" SET "title"=$1 WHERE id=$2;`;
+
+    pool.query(queryText, [editObject.title, movieId])
+        .then((result) => { 
+            res.sendStatus(200); 
+        })
+        .catch((err) => {
+                console.log('Error Editing movie data', err);
+                res.sendStatus(500);
+            });
+});
+
 module.exports = router;

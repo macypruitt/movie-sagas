@@ -22,10 +22,23 @@ function* getMovies(){
         console.log('ERROR IN GET', err)
     }
 }
+
+//saga to PUT edits to movie titles and descriptions
+function* editMovie(){
+    try {
+        const response = yield axios.put('/api/movies');
+        yield put({type: 'GET_MOVIES', payload: response.data});
+    }
+    catch(err) {
+        console.log('ERROR IN PUT', err)
+    }
+}
+
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
-    // yield takeEvery('EDIT_MOVIE', editMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
 // Create sagaMiddleware
