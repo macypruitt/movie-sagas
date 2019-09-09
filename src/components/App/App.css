@@ -1,8 +1,12 @@
 .App {
   text-align: center;
+  max-width: 800px;
+  display:inline-block;
 }
 
-
+body {
+  background-color: lightslategray;
+}
 .App-header {
   background-color: #222;
   height: 80px;
@@ -24,16 +28,19 @@
 }
 
 .container {
-  max-width: 90%;
-  width: 800px;
-  margin: auto;
-  display: block;
-  align-self: center;
+  margin: 0 auto;
+
 }
 
 .edit-div {
+  width: 500px;
   display: inline-block;
-  margin: auto;
-
+  text-align: center;
+  background-color: whitesmoke;
   
 }
+
+.details-container {
+  background-color: whitesmoke;
+}
+

@@ -1,24 +1,25 @@
+////Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-
-// Import saga middleware
+import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
-import axios from 'axios';
 
-// Create the rootSaga generator function
+import './index.css';
+import App from './components/App/App.js';
+
+////saga  
+const sagaMiddleware = createSagaMiddleware();
+
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
     yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
-//saga to GET list of movies
 function* getMovies(){
     try {
         const response = yield axios.get('/api/movies');
@@ -29,7 +30,6 @@ function* getMovies(){
     }
 }
 
-//saga to PUT edits to movie titles and descriptions
 function* editMovie(action){
     try {
         console.log('AP', action.payload)
@@ -43,11 +43,7 @@ function* editMovie(action){
 
 
 
-
-// Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
-
-// Used to store movies returned from the server
+////Reducers
 const moviesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -57,7 +53,6 @@ const moviesReducer = (state = [], action) => {
     }
 }
 
-// Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
@@ -67,17 +62,14 @@ const genres = (state = [], action) => {
     }
 }
 
-// Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         moviesReducer,
         genres,
     }),
-    // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
 
-// Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 

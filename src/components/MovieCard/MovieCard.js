@@ -17,7 +17,6 @@ class MovieCard extends Component {
 
     render() {
         
-       
         const movieImagePath = this.props.movieData.poster;
         console.log(movieImagePath);
         let titleImage = <img src={movieImagePath} alt="movie-poster"></img>
@@ -31,7 +30,7 @@ class MovieCard extends Component {
                             {titleImage}
                             </div>
                             <Typography>
-                            {this.props.movieData.title}
+                            <h3>{this.props.movieData.title}</h3>
                             {this.props.movieData.description}
                             {this.props.movieData.name}
                             </Typography>
