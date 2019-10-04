@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { Card,
         CardContent,
         CardActionArea,
-        Typography } from '@material-ui/core';
+        Typography,
+        Grid } from '@material-ui/core';
 import './MovieCard.css';
-
 
 class MovieCard extends Component {
 
@@ -20,9 +20,11 @@ class MovieCard extends Component {
         const movieImagePath = this.props.movieData.poster;
         console.log(movieImagePath);
         let titleImage = <img src={movieImagePath} alt="movie-poster"></img>
+        const movieDescription = this.props.movieData.description.replace(/\s/g,' ');
 
         return (
             <div>
+                <Grid item>
                 <Card className="movie-card">
                     <CardActionArea>
                         <CardContent>
@@ -30,14 +32,17 @@ class MovieCard extends Component {
                             {titleImage}
                             </div>
                             <Typography>
-                            <h3>{this.props.movieData.title}</h3>
-                            {this.props.movieData.description}
-                            {this.props.movieData.name}
+                                <div className="card-content">
+                                    <h3>{this.props.movieData.title}</h3>
+                                    {movieDescription}
+                                    {this.props.movieData.name}
+                                </div>
                             </Typography>
                         </CardContent>
                     </CardActionArea>
                     
                 </Card>
+                </Grid>
                 
             </div>
         )

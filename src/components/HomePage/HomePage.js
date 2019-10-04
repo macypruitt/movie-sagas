@@ -14,7 +14,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Grid container>
+                <Grid container justify="center">
                     {this.props.store.moviesReducer.map((item, index) => {
                         return (
                         <MovieCard key={index} movieData={item}/>

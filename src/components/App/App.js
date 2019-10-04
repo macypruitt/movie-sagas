@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { createMuiTheme } from '@material-ui/core/styles';
-import './App.css';
-
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 
 import HomePage from '../HomePage/HomePage';
 import DetailsPage from '../DetailsPage/DetailsPage';
 import EditPage from '../EditPage/EditPage';
 
+import { ThemeProvider } from '@material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles';
+import './App.css';
+import Grid from '@material-ui/core/Grid';
+
 const theme = createMuiTheme({
-  // palette: {
-  //   primary: blue
-  // }
-})
+  palette: {
+    primary: { main: '#FFE9AA' }, 
+    secondary: { main: '#0582CA' }, 
+  },
+});
 
 class App extends Component {
   
@@ -25,12 +24,13 @@ class App extends Component {
   render() {
     return (
       
-        <MuiThemeProvider>
+        <ThemeProvider>
           <div className="container">
-          <div className="App">
-            <div className="App-header">
+          <div className="App-header">
             <h1>Movie List</h1>
             </div>
+          <div className="App">
+            
           <Router>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/movies/:id" component={DetailsPage} />
@@ -39,7 +39,7 @@ class App extends Component {
           </div>
           </div>
          
-        </MuiThemeProvider>
+        </ThemeProvider>
       
     );
   }

@@ -39,7 +39,7 @@ class EditPage extends Component {
             ////Form inputs for user to edit movie title and description
             <div className="container">
                 <div className="edit-div">    
-                <input 
+                    <input 
                         type="text" 
                         placeholder="Edit title"
                         onChange={(event) => this.changeHandler(event, 'title')}>
