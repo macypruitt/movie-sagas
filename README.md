@@ -1,6 +1,6 @@
 # Movie List
 
-Movies List is a Single Page Architecture web application that retrieves movie data from a database. Users can click on the movie poster to view more details, and then click 'edit to change the listing'. 
+Movies List is a Single Page Architecture web application that uses react-router to generate pages based on movie id. This app is mobile-first, styled with Material-UI. Users can click on listings and edit the details, which are updated to the database.
 
 # Installation
 ## Database Setup
